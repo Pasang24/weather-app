@@ -19,13 +19,12 @@ function App() {
       .then((res) => {
         console.log(res.data);
         setData(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => {});
   }, []);
 
   const fetchData = (cityName) => {
