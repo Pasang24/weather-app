@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.city:last-child {
+  border-bottom: none;
+}
+
 .city:hover {
   background: rgb(73, 72, 72);
 }

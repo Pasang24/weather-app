@@ -23,9 +23,10 @@
 .current-day-info {
   display: flex;
   width: 100%;
+  max-width: 1000px;
   overflow-x: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .current-day-info::-webkit-scrollbar {

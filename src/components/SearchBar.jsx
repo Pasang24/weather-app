@@ -11,23 +11,28 @@ function SearchBar({ fetchData }) {
 
   useEffect(() => {
     if (cityName.length > 2) {
-      setIsLoading(true);
-      axios
-        .get("http://api.weatherapi.com/v1/search.json", {
-          params: {
-            key: "5d4f1b212f294d93ad790558230504",
-            q: cityName,
-          },
-        })
-        .then((res) => {
-          setCityList(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      const timer = setTimeout(() => {
+        setIsLoading(true);
+        axios
+          .get("http://api.weatherapi.com/v1/search.json", {
+            params: {
+              key: "5d4f1b212f294d93ad790558230504",
+              q: cityName,
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+            setCityList(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }, 500);
+
+      return () => clearTimeout(timer);
     } else {
       setCityList([]);
     }
