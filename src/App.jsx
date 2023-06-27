@@ -9,6 +9,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+
     axios
       .get(`${import.meta.env.VITE_REACT_SERVER_URL}/forecast.json`, {
         params: {
