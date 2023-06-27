@@ -1,0 +1,9 @@
+.city {
+  border-bottom: 1px solid rgb(182, 174, 174);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.city:hover {
+  background: rgb(73, 72, 72);
+}
