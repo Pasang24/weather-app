@@ -1,7 +1,7 @@
 import "./Spinner.css";
 
 function Spinner() {
-  return <div class="lds-dual-ring"></div>;
+  return <div className="lds-dual-ring"></div>;
 }
 
 export default Spinner;

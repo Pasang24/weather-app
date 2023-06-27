@@ -6,6 +6,7 @@ import axios from "axios";
 
 function App() {
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -18,6 +19,12 @@ function App() {
       .then((res) => {
         console.log(res.data);
         setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -40,9 +47,10 @@ function App() {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>Weather App</h1>
+      <h1 style={{ textAlign: "center", marginTop: "14px" }}>Weather App</h1>
       <SearchBar fetchData={fetchData} />
-      <Weather data={data} />
+      {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+      {!isLoading && <Weather data={data} />}
     </>
   );
 }
