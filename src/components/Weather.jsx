@@ -1,6 +1,23 @@
+import { useState } from "react";
+import { Bar, Line } from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js/auto";
 import "./Weather.css";
 
 function Weather({ data }) {
+  const [forecastData, setForecastData] = useState({
+    labels: data.forecast.forecastday.map((forecast) => forecast.date),
+    datasets: [
+      {
+        label: "Temperature in °C",
+        data: data.forecast.forecastday.map(
+          (forecast) => forecast.day.avgtemp_c
+        ),
+        // backgroundColor: "skyblue",
+        borderColor: "skyblue",
+      },
+    ],
+  });
+
   return (
     <div className="weather-container">
       <div className="basic-info">
@@ -11,13 +28,12 @@ function Weather({ data }) {
         <h2>{data.current.condition.text}</h2>
       </div>
 
-      <h2>24 Hour Weather Forecast</h2>
       <div className="current-day-info">
         {data.forecast.forecastday[0].hour.map((hourData, indx) => {
           return (
             <div className="hour-info" key={indx}>
               <h3>{hourData.time.slice(11)}</h3>
-              <h2>{hourData.temp_c}°</h2>
+              <h2>{hourData.temp_c}°C</h2>
               <img src={hourData.condition.icon} />
               <h4>
                 {hourData.wind_dir} {hourData.wind_kph}km/h
@@ -25,6 +41,11 @@ function Weather({ data }) {
             </div>
           );
         })}
+      </div>
+
+      <h2>3-Day Forecast</h2>
+      <div className="three-day-forecast">
+        <Line data={forecastData} />
       </div>
 
       <h2>Other Information</h2>

@@ -18,6 +18,7 @@ function App() {
         params: {
           key: import.meta.env.VITE_REACT_API_KEY,
           q: "Kathmandu",
+          days: 3,
         },
       })
       .then((res) => {
@@ -37,6 +38,7 @@ function App() {
         params: {
           key: import.meta.env.VITE_REACT_API_KEY,
           q: cityName,
+          days: 3,
         },
       })
       .then((res) => {

@@ -42,22 +42,29 @@
   padding: 10px;
   margin: 16px 6px;
   border-radius: 10px;
+  text-align: center;
 }
 
 .hour-info img {
-  width: 116px;
+  width: 120px;
 }
 
+.three-day-forecast,
 .other-info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* max-width: 700px;
+  width: 100%; */
+  margin-bottom: 10px;
+}
+
+.other-info {
   background: rgb(41, 40, 40);
   border-radius: 10px;
   padding: 16px 26px;
   width: 95%;
   max-width: 700px;
-  margin-bottom: 10px;
 }
 
 .info {
