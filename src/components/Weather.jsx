@@ -1,22 +1,50 @@
-import { useState } from "react";
-import { Bar, Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+import LineChart from "./LineChart";
 import "./Weather.css";
 
 function Weather({ data }) {
-  const [forecastData, setForecastData] = useState({
-    labels: data.forecast.forecastday.map((forecast) => forecast.date),
+  const tempData = {
+    labels: data.forecast.forecastday.map((forecast) => forecast.date.slice(5)),
     datasets: [
       {
-        label: "Temperature in °C",
+        label: "Max Temperature",
         data: data.forecast.forecastday.map(
-          (forecast) => forecast.day.avgtemp_c
+          (forecast) => forecast.day.maxtemp_c
         ),
-        // backgroundColor: "skyblue",
+        pointRadius: 6,
+        borderColor: "yellow",
+      },
+      {
+        label: "Min Temperature",
+        data: data.forecast.forecastday.map(
+          (forecast) => forecast.day.mintemp_c
+        ),
+        pointRadius: 6,
         borderColor: "skyblue",
       },
     ],
-  });
+  };
+
+  const options = {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Day",
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Temperture in °C",
+        },
+        min: 0,
+        max: 60,
+        ticks: {
+          stepSize: 10,
+        },
+      },
+    },
+  };
 
   return (
     <div className="weather-container">
@@ -44,9 +72,7 @@ function Weather({ data }) {
       </div>
 
       <h2>3-Day Forecast</h2>
-      <div className="three-day-forecast">
-        <Line data={forecastData} />
-      </div>
+      <LineChart data={tempData} options={options} />
 
       <h2>Other Information</h2>
       <div className="other-info">
