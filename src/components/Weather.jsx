@@ -51,7 +51,7 @@ function Weather({ data }) {
               <div>
                 <img src={forecast.day.condition.icon} />
                 <span>
-                  {forecast.date.slice(6)} / {forecast.day.condition.text}
+                  {forecast.date.slice(5)} / {forecast.day.condition.text}
                 </span>
               </div>
               <span>
