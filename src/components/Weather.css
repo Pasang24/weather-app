@@ -12,7 +12,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background: rgb(136, 185, 249); */
   text-align: center;
   max-width: 300px;
   width: 90%;
@@ -34,6 +33,32 @@
   width: 140px;
 }
 
+.future-forecast {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 700px;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.each-forecast {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 0 6px;
+}
+
+.each-forecast div {
+  display: flex;
+  align-items: center;
+}
+
+.each-forecast div img {
+  width: 40px;
+}
+
 .current-day-info {
   display: flex;
   max-width: 700px;
@@ -51,7 +76,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background: rgb(41, 40, 40); */
   padding: 10px;
   margin: 16px 10px;
   border-radius: 10px;

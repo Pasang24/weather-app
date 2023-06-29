@@ -1,53 +1,8 @@
-import LineChart from "./LineChart";
 import sun from "../assets/sun.png";
 import "./Weather.css";
 
 function Weather({ data }) {
-  const tempData = {
-    labels: data.forecast.forecastday.map((forecast) => forecast.date.slice(5)),
-    datasets: [
-      {
-        label: "Max Temperature",
-        data: data.forecast.forecastday.map(
-          (forecast) => forecast.day.maxtemp_c
-        ),
-        pointRadius: 6,
-        borderColor: "yellow",
-      },
-      {
-        label: "Min Temperature",
-        data: data.forecast.forecastday.map(
-          (forecast) => forecast.day.mintemp_c
-        ),
-        pointRadius: 6,
-        borderColor: "green",
-      },
-    ],
-  };
-
-  const options = {
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: "Day",
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: "Temperture in °C",
-        },
-        suggestedMin: 0,
-        suggestedMax: 60,
-        ticks: {
-          stepSize: 10,
-        },
-      },
-    },
-  };
-
-  function sunPercent(sunRise, sunSet, currentTime) {
+  const sunPercent = (sunRise, sunSet, currentTime) => {
     let sunRiseMins;
     let sunSetMins;
     let currentMins;
@@ -72,7 +27,7 @@ function Weather({ data }) {
     if (percentage < 0) return 0;
     else if (percentage > 100) return 100;
     else return percentage;
-  }
+  };
 
   const sunPosition = sunPercent(
     data.forecast.forecastday[0].astro.sunrise,
@@ -89,6 +44,24 @@ function Weather({ data }) {
         <span>{data.current.condition.text}</span>
       </div>
 
+      <div className="future-forecast">
+        {data.forecast.forecastday.map((forecast) => {
+          return (
+            <div className="each-forecast">
+              <div>
+                <img src={forecast.day.condition.icon} />
+                <span>
+                  {forecast.date.slice(6)} / {forecast.day.condition.text}
+                </span>
+              </div>
+              <span>
+                {forecast.day.maxtemp_c}° / {forecast.day.mintemp_c}°
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
       <div className="current-day-info">
         {data.forecast.forecastday[0].hour.map((hourData, indx) => {
           return (
@@ -101,9 +74,6 @@ function Weather({ data }) {
           );
         })}
       </div>
-
-      {/* <h2>3-Day Forecast</h2>
-      <LineChart data={tempData} options={options} /> */}
 
       <div className="other-info">
         <div className="sun-info">
