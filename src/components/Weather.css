@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.weather-container h2 {
+  text-align: center;
+}
+
 .basic-info {
   display: flex;
   flex-direction: column;
@@ -64,15 +68,21 @@
 
 .sun-info {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
+  width: 56%;
+}
+
+.paths {
+  position: relative;
+}
+
+.total-path {
+  position: absolute;
+  width: 100%;
+  border: 1px solid gray;
 }
 
 .sun-path {
   position: relative;
-  width: 70%;
   border: 1px solid yellow;
 }
 

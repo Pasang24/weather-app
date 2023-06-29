@@ -38,8 +38,8 @@ function Weather({ data }) {
           display: true,
           text: "Temperture in °C",
         },
-        min: 0,
-        max: 60,
+        suggestedMin: 0,
+        suggestedMax: 60,
         ticks: {
           stepSize: 10,
         },
@@ -90,6 +90,7 @@ function Weather({ data }) {
         <h2>{data.current.condition.text}</h2>
       </div>
 
+      <h2>Today's 24hr forecast</h2>
       <div className="current-day-info">
         {data.forecast.forecastday[0].hour.map((hourData, indx) => {
           return (
@@ -111,12 +112,11 @@ function Weather({ data }) {
       <h2>Other Information</h2>
       <div className="other-info">
         <div className="sun-info">
-          <div className="sun-path">
-            <img
-              src={sun}
-              className="sun"
-              style={{ left: `${sunPosition}%` }}
-            ></img>
+          <div className="paths">
+            <div className="total-path"></div>
+            <div className="sun-path" style={{ width: `${sunPosition}%` }}>
+              <img src={sun} className="sun"></img>
+            </div>
           </div>
         </div>
         <div className="info">
