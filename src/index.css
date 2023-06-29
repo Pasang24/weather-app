@@ -16,4 +16,5 @@ body {
     rgb(100, 176, 247)
   );
   user-select: none;
+  min-height: 100vh;
 }

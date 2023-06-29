@@ -14,14 +14,13 @@ function SearchBar({ fetchData }) {
       const timer = setTimeout(() => {
         setIsLoading(true);
         axios
-          .get("http://api.weatherapi.com/v1/search.json", {
+          .get(`${import.meta.env.VITE_REACT_SERVER_URL}/search.json`, {
             params: {
-              key: "5d4f1b212f294d93ad790558230504",
+              key: import.meta.env.VITE_REACT_API_KEY,
               q: cityName,
             },
           })
           .then((res) => {
-            console.log(res.data);
             setCityList(res.data);
           })
           .catch((err) => {

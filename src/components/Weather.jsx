@@ -19,8 +19,6 @@ function Weather({ data }) {
     currentMins =
       parseInt(currentMinsArr[0]) * 60 + parseInt(currentMinsArr[1]);
 
-    console.log(sunRiseMins, sunSetMins, currentMins);
-
     let percentage =
       ((currentMins - sunRiseMins) / (sunSetMins - sunRiseMins)) * 100;
 
@@ -35,19 +33,27 @@ function Weather({ data }) {
     data.location.localtime.slice(11)
   );
 
+  if (data.current.is_day) {
+    document.body.classList.remove("night-time");
+  } else {
+    document.body.classList.add("night-time");
+  }
+
   return (
     <div className="weather-container">
       <div className="basic-info">
-        <h3>{data.location.name}</h3>
+        <h3>
+          {data.location.name}, {data.location.country}
+        </h3>
         <h3>Local Time: {data.location.localtime.slice(11)}</h3>
         <h1>{data.current.temp_c}°C</h1>
         <span>{data.current.condition.text}</span>
       </div>
 
       <div className="future-forecast">
-        {data.forecast.forecastday.map((forecast) => {
+        {data.forecast.forecastday.map((forecast, indx) => {
           return (
-            <div className="each-forecast">
+            <div className="each-forecast" key={indx}>
               <div>
                 <img src={forecast.day.condition.icon} />
                 <span>
