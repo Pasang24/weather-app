@@ -9,6 +9,11 @@
 }
 
 body {
-  background-color: rgb(24, 24, 24);
+  /* background-color: rgb(24, 24, 24); */
+  background-image: linear-gradient(
+    to right,
+    rgb(61, 142, 217),
+    rgb(100, 176, 247)
+  );
   user-select: none;
 }

@@ -8,7 +8,10 @@ function LineChart({ data, options }) {
       <Line
         data={data}
         options={options}
-        style={{ background: "rgb(41, 40, 40)", borderRadius: "10px" }}
+        style={{
+          background: "rgba(255, 255, 255, 0.2)",
+          borderRadius: "10px",
+        }}
       />
     </div>
   );

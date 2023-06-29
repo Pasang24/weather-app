@@ -20,7 +20,7 @@ function Weather({ data }) {
           (forecast) => forecast.day.mintemp_c
         ),
         pointRadius: 6,
-        borderColor: "skyblue",
+        borderColor: "green",
       },
     ],
   };
@@ -83,33 +83,28 @@ function Weather({ data }) {
   return (
     <div className="weather-container">
       <div className="basic-info">
-        <h2>{data.location.name}</h2>
-        <h2>Local Time: {data.location.localtime.slice(11)}</h2>
-        <img src={data.current.condition.icon} alt="weather-icon" />
+        <h3>{data.location.name}</h3>
+        <h3>Local Time: {data.location.localtime.slice(11)}</h3>
         <h1>{data.current.temp_c}°C</h1>
-        <h2>{data.current.condition.text}</h2>
+        <span>{data.current.condition.text}</span>
       </div>
 
-      <h2>Today's 24hr forecast</h2>
       <div className="current-day-info">
         {data.forecast.forecastday[0].hour.map((hourData, indx) => {
           return (
             <div className="hour-info" key={indx}>
-              <h3>{hourData.time.slice(11)}</h3>
-              <h2>{hourData.temp_c}°C</h2>
+              <span>{hourData.time.slice(11)}</span>
+              <h4>{hourData.temp_c}°</h4>
               <img src={hourData.condition.icon} />
-              <h4>
-                {hourData.wind_dir} {hourData.wind_kph}km/h
-              </h4>
+              <span>{hourData.wind_kph}km/h</span>
             </div>
           );
         })}
       </div>
 
-      <h2>3-Day Forecast</h2>
-      <LineChart data={tempData} options={options} />
+      {/* <h2>3-Day Forecast</h2>
+      <LineChart data={tempData} options={options} /> */}
 
-      <h2>Other Information</h2>
       <div className="other-info">
         <div className="sun-info">
           <div className="paths">
@@ -120,44 +115,44 @@ function Weather({ data }) {
           </div>
         </div>
         <div className="info">
-          <h3>
+          <div>
             <span>Sunrise</span>
-            <span>{data.forecast.forecastday[0].astro.sunrise}</span>
-          </h3>
-          <h3>
+            <h3>{data.forecast.forecastday[0].astro.sunrise}</h3>
+          </div>
+          <div>
             <span>Sunset</span>
-            <span>{data.forecast.forecastday[0].astro.sunset}</span>
-          </h3>
+            <h3>{data.forecast.forecastday[0].astro.sunset}</h3>
+          </div>
         </div>
         <div className="info">
-          <h3>
+          <div>
             <span>Humidity</span>
-            <span>{data.current.humidity}%</span>
-          </h3>
-          <h3>
+            <h3>{data.current.humidity}%</h3>
+          </div>
+          <div>
             <span>Pressure</span>
-            <span>{data.current.pressure_mb} mbar</span>
-          </h3>
+            <h3>{data.current.pressure_mb} mbar</h3>
+          </div>
         </div>
         <div className="info">
-          <h3>
+          <div>
             <span>Wind Speed</span>
-            <span>{data.current.wind_kph}km/h</span>
-          </h3>
-          <h3>
+            <h3>{data.current.wind_kph}km/h</h3>
+          </div>
+          <div>
             <span>UV Index</span>
-            <span>{data.current.uv}</span>
-          </h3>
+            <h3>{data.current.uv}</h3>
+          </div>
         </div>
         <div className="info">
-          <h3>
+          <div>
             <span>Latitude</span>
-            <span>{data.location.lat}</span>
-          </h3>
-          <h3>
+            <h3>{data.location.lat}</h3>
+          </div>
+          <div>
             <span>Longitude</span>
-            <span>{data.location.lon}</span>
-          </h3>
+            <h3>{data.location.lon}</h3>
+          </div>
         </div>
       </div>
     </div>
