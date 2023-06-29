@@ -50,6 +50,7 @@
 }
 
 .other-info {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,14 +59,48 @@
   width: 95%;
   margin-bottom: 10px;
   border-radius: 10px;
-  padding: 16px 26px;
+  padding: 26px 26px 16px;
+}
+
+.sun-info {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.sun-path {
+  position: relative;
+  width: 70%;
+  border: 1px solid yellow;
+}
+
+.sun {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(14deg);
+  left: 100%;
+  width: 70px;
+  /* height: 50px; */
+  border-radius: 50%;
+  animation: sunAnimation 4s infinite linear;
+}
+
+@keyframes sunAnimation {
+  from {
+    transform: translate(-50%, -50%) rotate(14deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(374deg);
+  }
 }
 
 .info {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 10px 0;
+  margin: 14px 0;
 }
 
 .info h3 {

@@ -1,4 +1,5 @@
 import LineChart from "./LineChart";
+import sun from "../assets/sun.png";
 import "./Weather.css";
 
 function Weather({ data }) {
@@ -46,11 +47,44 @@ function Weather({ data }) {
     },
   };
 
+  function sunPercent(sunRise, sunSet, currentTime) {
+    let sunRiseMins;
+    let sunSetMins;
+    let currentMins;
+
+    let sunRiseArr = sunRise.slice(0, 5).split(":");
+    sunRiseMins = parseInt(sunRiseArr[0]) * 60 + parseInt(sunRiseArr[1]);
+
+    let sunSetArr = sunSet.slice(0, 5).split(":");
+    sunSetMins = parseInt(sunSetArr[0]) * 60 + parseInt(sunSetArr[1]);
+    if (sunSet.slice(6) === "PM") sunSetMins += 720;
+
+    let currentMinsArr = currentTime.split(":");
+
+    currentMins =
+      parseInt(currentMinsArr[0]) * 60 + parseInt(currentMinsArr[1]);
+
+    console.log(sunRiseMins, sunSetMins, currentMins);
+
+    let percentage =
+      ((currentMins - sunRiseMins) / (sunSetMins - sunRiseMins)) * 100;
+
+    if (percentage < 0) return 0;
+    else if (percentage > 100) return 100;
+    else return percentage;
+  }
+
+  const sunPosition = sunPercent(
+    data.forecast.forecastday[0].astro.sunrise,
+    data.forecast.forecastday[0].astro.sunset,
+    data.location.localtime.slice(11)
+  );
+
   return (
     <div className="weather-container">
       <div className="basic-info">
         <h2>{data.location.name}</h2>
-        <h2>Local TIme: {data.location.localtime.slice(11)}</h2>
+        <h2>Local Time: {data.location.localtime.slice(11)}</h2>
         <img src={data.current.condition.icon} alt="weather-icon" />
         <h1>{data.current.temp_c}°C</h1>
         <h2>{data.current.condition.text}</h2>
@@ -76,6 +110,15 @@ function Weather({ data }) {
 
       <h2>Other Information</h2>
       <div className="other-info">
+        <div className="sun-info">
+          <div className="sun-path">
+            <img
+              src={sun}
+              className="sun"
+              style={{ left: `${sunPosition}%` }}
+            ></img>
+          </div>
+        </div>
         <div className="info">
           <h3>
             <span>Sunrise</span>
