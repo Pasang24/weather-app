@@ -34,9 +34,9 @@ function Weather({ data }) {
   );
 
   if (data.current.is_day) {
-    document.body.classList.remove("night-time");
+    document.body.style.backgroundPosition = "left";
   } else {
-    document.body.classList.add("night-time");
+    document.body.style.backgroundPosition = "right";
   }
 
   return (
