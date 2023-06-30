@@ -162,6 +162,8 @@
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 16px 26px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .air-info {
@@ -179,8 +181,6 @@
 .more-air-details-btn {
   display: flex;
   align-items: center;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .air-status {

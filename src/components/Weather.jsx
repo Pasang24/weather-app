@@ -117,7 +117,7 @@ function Weather({ data }) {
         })}
       </div>
 
-      <div className="air-quality">
+      <div onClick={handleClick} className="air-quality">
         <div className="index">
           <span>Air Quality Index</span>
           <div className="air-info">
@@ -125,7 +125,7 @@ function Weather({ data }) {
               <BiSolidLeaf size={24} />
               <h2>{data.current.air_quality["us-epa-index"]}</h2>
             </div>
-            <div onClick={handleClick} className="more-air-details-btn">
+            <div className="more-air-details-btn">
               <span>
                 {showAirDetails ? "Show Less" : "Full air quality forecast"}
               </span>
