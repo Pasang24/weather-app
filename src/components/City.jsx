@@ -2,7 +2,7 @@ import "./City.css";
 
 function City({ city, setCityName, fetchData }) {
   const handleClick = () => {
-    fetchData(city.name);
+    fetchData(city.lat, city.lon);
     setCityName("");
   };
 

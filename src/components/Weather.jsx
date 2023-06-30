@@ -1,3 +1,4 @@
+import { BiSolidLeaf } from "react-icons/bi";
 import sun from "../assets/sun.png";
 import "./Weather.css";
 
@@ -27,10 +28,32 @@ function Weather({ data }) {
     else return percentage;
   };
 
+  const airIndexStatus = (index) => {
+    switch (index) {
+      case 1:
+        return "Good";
+      case 2:
+        return "Moderate";
+      case 3:
+      case 4:
+        return "Unhealthy";
+      case 5:
+        return "Very Unhealthy";
+      case 6:
+        return "Hazardous";
+      default:
+        return "";
+    }
+  };
+
   const sunPosition = sunPercent(
     data.forecast.forecastday[0].astro.sunrise,
     data.forecast.forecastday[0].astro.sunset,
     data.location.localtime.slice(11)
+  );
+
+  const currentAirStatus = airIndexStatus(
+    data.current.air_quality["us-epa-index"]
   );
 
   if (data.current.is_day) {
@@ -128,6 +151,43 @@ function Weather({ data }) {
           <div>
             <span>Longitude</span>
             <h3>{data.location.lon}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div className="air-quality">
+        <div className="index">
+          <span>Air Quality Index</span>
+          <div>
+            <BiSolidLeaf size={24} />
+            <h2>{data.current.air_quality["us-epa-index"]}</h2>
+            <span>{currentAirStatus}</span>
+          </div>
+        </div>
+        <div className="air-status">
+          <div className="each-gas">
+            <span>CO</span>
+            <h4>{data.current.air_quality.co.toFixed(1)}</h4>
+          </div>
+          <div className="each-gas">
+            <span>NO2</span>
+            <h4>{data.current.air_quality.no2.toFixed(1)}</h4>
+          </div>
+          <div className="each-gas">
+            <span>O3</span>
+            <h4>{data.current.air_quality.o3.toFixed(1)}</h4>
+          </div>
+          <div className="each-gas">
+            <span>PM2.5</span>
+            <h4>{data.current.air_quality.pm2_5.toFixed(1)}</h4>
+          </div>
+          <div className="each-gas">
+            <span>PM10</span>
+            <h4>{data.current.air_quality.pm10.toFixed(1)}</h4>
+          </div>
+          <div className="each-gas">
+            <span>SO2</span>
+            <h4>{data.current.air_quality.so2.toFixed(1)}</h4>
           </div>
         </div>
       </div>

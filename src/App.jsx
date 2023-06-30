@@ -19,6 +19,7 @@ function App() {
           key: import.meta.env.VITE_REACT_API_KEY,
           q: "Kathmandu",
           days: 3,
+          aqi: "yes",
         },
       })
       .then((res) => {
@@ -32,13 +33,14 @@ function App() {
       .finally(() => {});
   }, []);
 
-  const fetchData = (cityName) => {
+  const fetchData = (lat, lon) => {
     axios
       .get(`${import.meta.env.VITE_REACT_SERVER_URL}/forecast.json`, {
         params: {
           key: import.meta.env.VITE_REACT_API_KEY,
-          q: cityName,
+          q: `${lat},${lon}`,
           days: 3,
+          aqi: "yes",
         },
       })
       .then((res) => {

@@ -4,10 +4,6 @@
   align-items: center;
 }
 
-.weather-container h2 {
-  text-align: center;
-}
-
 .basic-info {
   display: flex;
   flex-direction: column;
@@ -155,4 +151,34 @@
 .info h3 {
   display: flex;
   flex-direction: column;
+}
+
+.air-quality {
+  background: rgba(255, 255, 255, 0.2);
+  max-width: 700px;
+  width: 95%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 16px 26px;
+}
+
+.index {
+  margin-bottom: 18px;
+}
+
+.index div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.air-status {
+  display: flex;
+  justify-content: space-between;
+}
+
+.each-gas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
