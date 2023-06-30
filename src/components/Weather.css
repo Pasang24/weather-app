@@ -113,13 +113,12 @@
 .total-path {
   position: absolute;
   width: 100%;
-  border: 2px dashed white;
-  background: white;
+  border: 1.6px dashed white;
 }
 
 .sun-path {
   position: relative;
-  border: 2px solid white;
+  border: 1.6px solid white;
   background: white;
 }
 
