@@ -1,8 +1,16 @@
+import { useState, useEffect } from "react";
 import { BiSolidLeaf } from "react-icons/bi";
+import { IoIosArrowForward } from "react-icons/io";
 import sun from "../assets/sun.png";
 import "./Weather.css";
 
 function Weather({ data }) {
+  const [showAirDetails, setShowAirDetails] = useState(false);
+
+  useEffect(() => {
+    setShowAirDetails(false);
+  }, [data]);
+
   const sunPercent = (sunRise, sunSet, currentTime) => {
     let sunRiseMins;
     let sunSetMins;
@@ -44,6 +52,11 @@ function Weather({ data }) {
       default:
         return "";
     }
+  };
+
+  const handleClick = () => {
+    setShowAirDetails((prev) => !prev);
+    document.body.scrollTop = document.body.scrollHeight;
   };
 
   const sunPosition = sunPercent(
@@ -104,6 +117,58 @@ function Weather({ data }) {
         })}
       </div>
 
+      <div className="air-quality">
+        <div className="index">
+          <span>Air Quality Index</span>
+          <div className="air-info">
+            <div className="air-index-value">
+              <BiSolidLeaf size={24} />
+              <h2>{data.current.air_quality["us-epa-index"]}</h2>
+            </div>
+            <div onClick={handleClick} className="more-air-details-btn">
+              <span>
+                {showAirDetails ? "Show Less" : "Full air quality forecast"}
+              </span>
+              <IoIosArrowForward />
+            </div>
+          </div>
+        </div>
+        <div
+          className={`air-status ${showAirDetails ? "show-air-status" : ""}`}
+        >
+          <div className="each-gas">
+            <h4>{data.current.air_quality.pm2_5.toFixed(1)}</h4>
+            <span>PM2.5</span>
+          </div>
+          <div className="each-gas">
+            <h4>{data.current.air_quality.pm10.toFixed(1)}</h4>
+            <span>PM10</span>
+          </div>
+          <div className="each-gas">
+            <h4>{data.current.air_quality.so2.toFixed(1)}</h4>
+            <span>
+              SO<sub>2</sub>
+            </span>
+          </div>
+          <div className="each-gas">
+            <h4>{data.current.air_quality.no2.toFixed(1)}</h4>
+            <span>
+              NO<sub>2</sub>
+            </span>
+          </div>
+          <div className="each-gas">
+            <h4>{data.current.air_quality.o3.toFixed(1)}</h4>
+            <span>
+              O<sub>3</sub>
+            </span>
+          </div>
+          <div className="each-gas">
+            <h4>{data.current.air_quality.co.toFixed(1)}</h4>
+            <span>CO</span>
+          </div>
+        </div>
+      </div>
+
       <div className="other-info">
         <div className="sun-info">
           <div className="paths">
@@ -151,43 +216,6 @@ function Weather({ data }) {
           <div>
             <span>Longitude</span>
             <h3>{data.location.lon}</h3>
-          </div>
-        </div>
-      </div>
-
-      <div className="air-quality">
-        <div className="index">
-          <span>Air Quality Index</span>
-          <div>
-            <BiSolidLeaf size={24} />
-            <h2>{data.current.air_quality["us-epa-index"]}</h2>
-            <span>{currentAirStatus}</span>
-          </div>
-        </div>
-        <div className="air-status">
-          <div className="each-gas">
-            <span>CO</span>
-            <h4>{data.current.air_quality.co.toFixed(1)}</h4>
-          </div>
-          <div className="each-gas">
-            <span>NO2</span>
-            <h4>{data.current.air_quality.no2.toFixed(1)}</h4>
-          </div>
-          <div className="each-gas">
-            <span>O3</span>
-            <h4>{data.current.air_quality.o3.toFixed(1)}</h4>
-          </div>
-          <div className="each-gas">
-            <span>PM2.5</span>
-            <h4>{data.current.air_quality.pm2_5.toFixed(1)}</h4>
-          </div>
-          <div className="each-gas">
-            <span>PM10</span>
-            <h4>{data.current.air_quality.pm10.toFixed(1)}</h4>
-          </div>
-          <div className="each-gas">
-            <span>SO2</span>
-            <h4>{data.current.air_quality.so2.toFixed(1)}</h4>
           </div>
         </div>
       </div>
