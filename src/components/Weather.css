@@ -182,11 +182,16 @@
   align-items: center;
 }
 
+.more-air-details-btn span {
+  font-size: 14px;
+}
+
 .air-status {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.2s;
+  opacity: 0;
+  transition: grid-template-rows 0.14s, opacity 0.18s ease;
 }
 
 .each-gas {
@@ -198,4 +203,13 @@
 
 .show-air-status {
   grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.arrow {
+  transition: 0.08s ease;
+}
+
+.rotate-arrow {
+  transform: rotate(-180deg);
 }

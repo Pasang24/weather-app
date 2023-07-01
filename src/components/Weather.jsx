@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { BiSolidLeaf } from "react-icons/bi";
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import sun from "../assets/sun.png";
 import "./Weather.css";
 
 function Weather({ data }) {
-  const [showAirDetails, setShowAirDetails] = useState(false);
-
   useEffect(() => {
-    setShowAirDetails(false);
+    const el = document.querySelector(".air-status");
+    const arrow = document.querySelector(".arrow");
+
+    el.classList.remove("show-air-status");
+    arrow.classList.remove("rotate-arrow");
   }, [data]);
 
   const sunPercent = (sunRise, sunSet, currentTime) => {
@@ -55,8 +57,16 @@ function Weather({ data }) {
   };
 
   const handleClick = () => {
-    setShowAirDetails((prev) => !prev);
-    document.body.scrollTop = document.body.scrollHeight;
+    const el = document.querySelector(".air-status");
+    const arrow = document.querySelector(".arrow");
+
+    if (el.classList.contains("show-air-status")) {
+      el.classList.remove("show-air-status");
+      arrow.classList.remove("rotate-arrow");
+    } else {
+      el.classList.add("show-air-status");
+      arrow.classList.add("rotate-arrow");
+    }
   };
 
   const sunPosition = sunPercent(
@@ -126,16 +136,12 @@ function Weather({ data }) {
               <h2>{data.current.air_quality["us-epa-index"]}</h2>
             </div>
             <div className="more-air-details-btn">
-              <span>
-                {showAirDetails ? "Show Less" : "Full air quality forecast"}
-              </span>
-              <IoIosArrowForward />
+              <span>Full air quality forecast</span>
+              <IoIosArrowDown className="arrow" />
             </div>
           </div>
         </div>
-        <div
-          className={`air-status ${showAirDetails ? "show-air-status" : ""}`}
-        >
+        <div className="air-status">
           <div className="each-gas">
             <h4>{data.current.air_quality.pm2_5.toFixed(1)}</h4>
             <span>PM2.5</span>
