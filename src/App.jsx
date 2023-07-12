@@ -23,7 +23,6 @@ function App() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
         setIsLoading(false);
       })
@@ -44,7 +43,6 @@ function App() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch((err) => {

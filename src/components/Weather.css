@@ -191,7 +191,6 @@
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 0fr;
   opacity: 0;
-  transition: grid-template-rows 0.14s, opacity 0.18s ease;
 }
 
 .each-gas {
